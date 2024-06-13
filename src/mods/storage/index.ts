@@ -10,8 +10,8 @@ export async function createOrThrow(name: string, data: Uint8Array): Promise<Uin
     publicKey: {
       challenge: new Uint8Array([117, 61, 252, 231, 191, 241]),
       rp: {
-        id: location.origin,
-        name: location.origin
+        id: location.hostname,
+        name: location.hostname
       },
       user: {
         id: data,
