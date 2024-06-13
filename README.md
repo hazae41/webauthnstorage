@@ -34,7 +34,7 @@ async function create() {
   /**
    * Generate a new private key
    */
-  const bytes = crypto.getRandomBytes(new Uint8Array(32))
+  const bytes = crypto.getRandomValues(new Uint8Array(32))
 
   /**
    * Store the private key into authenticated storage
