@@ -65,3 +65,45 @@ async function get() {
   const bytes = await WebAuthnStorage.get(handle)
 }
 ```
+
+## Limitations
+
+### Storage size
+
+Values must have a maximum length of 64 bytes
+
+https://github.com/w3c/webauthn/issues/1302
+
+I recommend storing private keys, signatures, and identifiers
+
+### User interation
+
+This requires user interaction on most browsers
+
+e.g. You have to create and get when the user clicks a button
+
+```tsx
+const [handle, setHandle] = useState<Uint8Array>()
+
+const onCreateClick = useCallback(async () => {
+  const bytes = crypto.getRandomValues(new Uint8Array(32))
+  const handle = await WebAuthnStorage.create("My Private Key", bytes)
+
+  setHandle(handle)
+}, [])
+
+const onGetClick = useCallback(async () => {
+  const bytes = await WebAuthnStorage.get(handle)
+
+  console.log(bytes)
+}, [handle])
+
+return <>
+  <button onClick={onCreateClick}>
+    Create
+  </button>
+  <button onClick={onGetClick}>
+    Get
+  </button>
+</>
+```
