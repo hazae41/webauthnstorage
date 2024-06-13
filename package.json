@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@hazae41/webauthnstorage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deterministic storage using WebAuthn",
   "homepage": "https://github.com/hazae41/webauthnstorage",
   "repository": "github:hazae41/webauthnstorage",
