@@ -16,7 +16,7 @@ This WON'T use any cryptoprocessor (HSM, Secure Enclave) as it stores the bytes 
 
 This is only used to prevent unauthenticated access to the stored values
 
-Supply-chain attacks, phishing, misclick, phone-left-on-the-table attack would still require user approval before accessing the data
+Supply-chain attacks, phishing, misclick, phone-left-on-the-table attack would still require user authentication before accessing the data
 
 ## Features
 
