@@ -74,7 +74,7 @@ Values must have a maximum length of 64 bytes
 
 https://github.com/w3c/webauthn/issues/1302
 
-I recommend storing private keys, signatures, and identifiers
+I recommend only storing private keys, signatures, and identifiers
 
 ### User interation
 
