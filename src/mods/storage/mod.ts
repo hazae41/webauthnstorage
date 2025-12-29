@@ -5,7 +5,7 @@
  * @param data arbitrary data of 64 bytes or less
  * @returns handle to the data
  */
-export async function createOrThrow(name: string, data: Uint8Array): Promise<Uint8Array> {
+export async function createOrThrow(name: string, data: Uint8Array<ArrayBuffer>): Promise<Uint8Array<ArrayBuffer>> {
   const credential = await navigator.credentials.create({
     publicKey: {
       challenge: new Uint8Array([117, 61, 252, 231, 191, 241]),
@@ -27,7 +27,7 @@ export async function createOrThrow(name: string, data: Uint8Array): Promise<Uin
         authenticatorAttachment: "platform"
       }
     }
-  }) as any
+  }) as unknown as { rawId: ArrayBuffer }
 
   return new Uint8Array(credential.rawId)
 }
@@ -38,13 +38,13 @@ export async function createOrThrow(name: string, data: Uint8Array): Promise<Uin
  * @param id handle to the data
  * @returns data
  */
-export async function getOrThrow(id: Uint8Array): Promise<Uint8Array> {
+export async function getOrThrow(id: Uint8Array<ArrayBuffer>): Promise<Uint8Array> {
   const credential = await navigator.credentials.get({
     publicKey: {
       challenge: new Uint8Array([117, 61, 252, 231, 191, 241]),
       allowCredentials: [{ type: "public-key", id }],
     }
-  }) as any
+  }) as unknown as { response: { userHandle: ArrayBuffer } }
 
   return new Uint8Array(credential.response.userHandle)
 }
