@@ -3,7 +3,7 @@
 Deterministic storage using WebAuthn
 
 ```bash
-npm i @hazae41/webauthnstorage
+npm install @hazae41/webauthnstorage
 ```
 
 [**Node Package 📦**](https://www.npmjs.com/package/@hazae41/webauthnstorage)
@@ -28,7 +28,7 @@ Supply-chain attacks, phishing, misclick, phone-left-on-the-table attack would s
 ## Usage
 
 ```tsx
-import { WebAuthnStorage } from "@hazae41/webauthnstorage"
+import { webAuthnStorage } from "@hazae41/webauthnstorage"
 
 async function create() {
   /**
@@ -39,7 +39,7 @@ async function create() {
   /**
    * Store the private key into authenticated storage
    */
-  const handle = await WebAuthnStorage.create("My Private Key", bytes)
+  const handle = await webAuthnStorage.create("My Private Key", bytes)
   
   /**
    * Store the handle to the private key into some unauthenticated storage
@@ -62,7 +62,7 @@ async function get() {
   /**
    * Retrieve the private key from authenticated storage
    */
-  const bytes = await WebAuthnStorage.get(handle)
+  const bytes = await webAuthnStorage.get(handle)
 }
 ```
 
@@ -87,13 +87,13 @@ const [handle, setHandle] = useState<Uint8Array>()
 
 const onCreateClick = useCallback(async () => {
   const bytes = crypto.getRandomValues(new Uint8Array(32))
-  const handle = await WebAuthnStorage.create("My Private Key", bytes)
+  const handle = await webAuthnStorage.create("My Private Key", bytes)
 
   setHandle(handle)
 }, [])
 
 const onGetClick = useCallback(async () => {
-  const bytes = await WebAuthnStorage.get(handle)
+  const bytes = await webAuthnStorage.get(handle)
 
   console.log(bytes)
 }, [handle])
