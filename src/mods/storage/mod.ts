@@ -8,9 +8,9 @@
 export async function createOrThrow(name: string, data: Uint8Array<ArrayBuffer>): Promise<Uint8Array<ArrayBuffer>> {
   const credential = await navigator.credentials.create({
     publicKey: {
+      attestation: "none",
       challenge: new Uint8Array([117, 61, 252, 231, 191, 241]),
       rp: {
-        id: location.hostname,
         name: location.hostname
       },
       user: {
@@ -24,7 +24,9 @@ export async function createOrThrow(name: string, data: Uint8Array<ArrayBuffer>)
         { type: "public-key", alg: -257 }
       ],
       authenticatorSelection: {
-        authenticatorAttachment: "platform"
+        authenticatorAttachment: "platform",
+        residentKey: "required",
+        userVerification: "discouraged"
       }
     }
   }) as unknown as { rawId: ArrayBuffer }
@@ -43,6 +45,7 @@ export async function getOrThrow(id: Uint8Array<ArrayBuffer>): Promise<Uint8Arra
     publicKey: {
       challenge: new Uint8Array([117, 61, 252, 231, 191, 241]),
       allowCredentials: [{ type: "public-key", id }],
+      userVerification: "required"
     }
   }) as unknown as { response: { userHandle: ArrayBuffer } }
 
